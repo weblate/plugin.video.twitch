@@ -19,6 +19,7 @@ from twitch.api.parameters import StreamType
 def route():
     kodi.set_view('files', set_sort=False)
     context_menu = list()
+    context_menu.extend(menu_items.clear_previews())
     kodi.create_item({'label': i18n('live_channels'), 'path': {'mode': MODES.FOLLOWED, 'content': StreamType.LIVE}, 'context_menu': context_menu,
                       'info': {'plot': '%s - %s' % (i18n('following'), i18n('live_channels'))}})
     context_menu = list()
