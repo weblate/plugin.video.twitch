@@ -310,18 +310,6 @@
 					</constraints>
 					<control format="string" type="spinner"/>
 				</setting>
-				<setting help="" id="refresh_interval" label="30259" type="integer">
-					<level>0</level>
-					<default>10</default>
-					<constraints>
-						<minimum>0</minimum>
-						<step>1</step>
-						<maximum>180</maximum>
-					</constraints>
-					<control format="integer" type="slider">
-						<popup>false</popup>
-					</control>
-				</setting>
 				<setting help="" id="vodcast_highlight" label="30222" type="integer">
 					<level>0</level>
 					<default>79</default>
@@ -697,6 +685,80 @@
 					<control format="action" type="button">
 						<close>true</close>
 					</control>
+				</setting>
+			</group>
+		</category>
+		<category help="" id="live previews" label="30082">
+			<group id="1">
+				<setting help="" id="live_previews_enable" label="30083" type="boolean">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
+			<group id="2" label="30085"/>
+			<group id="3" label="30086">
+				<setting help="" id="clear_previews" label="30084" type="action">
+					<level>0</level>
+					<data>RunPlugin(plugin://plugin.video.twitch/?mode=clear_live_previews&amp;notify=true)</data>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<dependencies>
+						<dependency type="enable">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+						<dependency type="visible">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+					</dependencies>
+					<control format="action" type="button"/>
+				</setting>
+				<setting help="" id="refresh_previews" label="30074" type="boolean">
+					<level>0</level>
+					<default>false</default>
+					<dependencies>
+						<dependency type="enable">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+						<dependency type="visible">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+					</dependencies>
+					<control type="toggle"/>
+				</setting>
+				<setting help="" id="refresh_interval" label="30094" type="integer">
+					<level>0</level>
+					<default>10</default>
+					<constraints>
+						<minimum>0</minimum>
+						<step>1</step>
+						<maximum>180</maximum>
+					</constraints>
+					<dependencies>
+						<dependency type="enable">
+							<condition operator="is" setting="refresh_previews">true</condition>
+						</dependency>
+						<dependency type="visible">
+							<condition operator="is" setting="refresh_previews">true</condition>
+						</dependency>
+					</dependencies>
+					<control format="integer" type="slider">
+						<popup>false</popup>
+					</control>
+				</setting>
+				<setting help="" id="notify_refresh" label="30087" type="boolean">
+					<level>0</level>
+					<default>true</default>
+					<dependencies>
+						<dependency type="enable">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+						<dependency type="visible">
+							<condition operator="is" setting="live_previews_enable">true</condition>
+						</dependency>
+					</dependencies>
+					<control type="toggle"/>
 				</setting>
 			</group>
 		</category>
